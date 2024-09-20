@@ -119,7 +119,7 @@ function App() {
                             <Typography variant="h5" gutterBottom fontFamily="Poppins">
                                 Emotion Tracker
                             </Typography>
-                            <video ref={videoRef} width="640" height="300" />
+                            <video ref={videoRef} width="640" height="300" style={{ visibility: 'hidden' }}  />
                         </Box>
                         <Box sx={{ display: 'flex', justifyContent: 'center', marginTop: 0.8 }}>
                             <Button variant="contained" color="primary" onClick={startStreaming} disabled={streaming} bgcolor="white" >
