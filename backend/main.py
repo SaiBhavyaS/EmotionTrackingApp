@@ -1,3 +1,4 @@
+
 from flask import Flask, request
 from flask_socketio import SocketIO, emit
 import cv2
@@ -26,7 +27,6 @@ def handle_webcam_frame(data):
     np_arr = np.frombuffer(frame, np.uint8)
     img = cv2.imdecode(np_arr, cv2.IMREAD_COLOR)
 
-    # Asynchronous emotion detection
     socketio.start_background_task(emotion_detection_task, img)
 
 def emotion_detection_task(img):
@@ -37,5 +37,5 @@ def emotion_detection_task(img):
         socketio.emit('emotion_result', {'emotions': 'No emotion detected'})
 
 if __name__ == '__main__':
-    socketio.run(app, debug=True, host='0.0.0.0', port=5000)
-
+    socketio.run(app, debug=True, host='0.0.0.0', port=5000, allow_unsafe_werkzeug=True)
+   
